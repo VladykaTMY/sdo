@@ -1,11 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-
+import { BrowserRouter, NavLink, Route} from 'react-router-dom';
+import Profile from "./componets/Profile"
 import './App.css';
-
-const Profile = ()=>{
-  return <h1>Это страница профиля</h1>
-}
+import Friends from "./componets/Friends"
 
 const Messenges = ()=>{
   return <h1>Страница с сообщениями</h1>
@@ -15,42 +12,41 @@ const Settings = ()=>{
   return <h1>Страница с настройками</h1>
 }
 
-const Friends = ()=>{
-  return <h1>Ваши друзья</h1>
-}
+
 
 const Menu =()=>{
   return(
     <div >
       <div className="nav flex-column nav-pills" aria-orientation="vertical">
-        <a className="nav-link active" href="profile">Профиль</a>
-        <a className="nav-link" href="messanges">Сообщения</a>
-        <a className="nav-link" href="settings">Настройки</a>
-        <a className="nav-link" href="friends">Друзья</a>
+        <NavLink className="nav-link" to="profile">Профиль</NavLink>
+        <NavLink className="nav-link" to="messanges">Сообщения</NavLink>
+        <NavLink className="nav-link" to="settings">Настройки</NavLink>
+        <NavLink className="nav-link" to="friends">Друзья</NavLink>
       </div>
   </div>
   )
 }
 
-function App() {
+function App(props) {
+  console.log(props)
   return (
   <div className="container-fluid">
-    
+    <BrowserRouter>
     <div className="row">
       <div className="col-sm-3">
         <Menu />
       </div>
       <div className="col-sm-9">
-        <BrowserRouter>
-        <Route path="/profile"  component={Profile}/>
-<Route path="/messanges" component={Messenges}/>
-<Route path="/settings" component={Settings}/>
-<Route path="/friends" component={Friends}/>
+        
+          <Route path="/profile" render={()=><Profile function ={props.functions.key_getUser}/>} />
+          <Route path="/messanges" component={Messenges}/>
+          <Route path="/settings" component={Settings}/>
+          <Route path="/friends" render={()=><Friends function ={props.functions.key_getUsers}/>} />
 
-        </BrowserRouter>
+        
       </div>
     </div>
-    
+    </BrowserRouter>
   </div>
   );
 }
