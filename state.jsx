@@ -1,5 +1,3 @@
-
-
 const user = {
     name: "Djonny",
     lastname: "Depp",
@@ -9,21 +7,23 @@ const user = {
 };
 
 const users={
-0:{name:"Андреев", lastname:"Максим"},
-1:{name:"Вера",lastname:"Мельникова"},
-2:{name:"Василиса",lastname:"Копылова"},
-3:{name:"Полина",lastname:"Малинина"},
-4:{name:"Дамир",lastname:"Иванова"},
-5:{name:"Фёдор",lastname:"Марьям"},
-6:{name:"Максим",lastname:"Зимин"},
-7:{name:"Даниил",lastname:"Поляков"},
-8:{name:"Вера",lastname:"Головин"},
-9:{name:"Полина",lastname:"Романова"},
+0:{name:"Андреев", lastname:"Максим",id:5},
+1:{name:"Вера",lastname:"Мельникова",id:9},
+2:{name:"Василиса",lastname:"Копылова",id:11},
+3:{name:"Полина",lastname:"Малинина",id:2},
+4:{name:"Дамир",lastname:"Иванова",id:3},
+5:{name:"Фёдор",lastname:"Марьям",id:4},
+6:{name:"Максим",lastname:"Зимин",id:6},
+7:{name:"Даниил",lastname:"Поляков",id:7},
+8:{name:"Вера",lastname:"Головин",id:8},
+9:{name:"Полина",lastname:"Романова",id:10},
 };
 
 
-export function getUser(){
+export function getUser(userId){
+    for(let i = 0; i<Object.keys(users).length;i++) if(users[i].id==userId) return users[i];
     return user;
+
 }
 
 
